@@ -4,6 +4,9 @@ node_modules
 # Build
 dist
 
+# Coverage
+coverage
+
 # Environment variables
 .env
 .env.development.local

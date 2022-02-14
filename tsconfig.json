@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "types": ["@types/jest"],
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
