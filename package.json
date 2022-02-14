@@ -1,0 +1,12 @@
+{
+  "name": "ordo-realitas-api",
+  "version": "1.0.0",
+  "description": "The backend of ordo realitas website",
+  "main": "index.js",
+  "author": "Francesco Gonzalez Muller",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}
