@@ -1,10 +1,15 @@
 {
   "name": "ordo-realitas-api",
   "version": "1.0.0",
-  "description": "The backend of ordo realitas website",
-  "author": "Francesco Gonzalez Muller",
+  "description": "The ordo realitas api",
+  "author": "Francesco Gonzalez Muller <francescogmuller@hotmail.com> (https://github.com/FrancescoGM)",
   "license": "MIT",
   "private": true,
+  "homepage": "https://ordo-realitas.com.br",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FrancescoGM/ordo-realitas-api.git"
+  },
   "scripts": {
     "lint:fix": "eslint --fix && prettier --write '**/*.{json,js,ts}'"
   },
