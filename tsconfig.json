@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "ES2022",
+    "target": "ES2021",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "types": ["@types/jest", "node"],
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
