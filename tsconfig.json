@@ -13,10 +13,9 @@
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
-      "@errors/*": ["errors/*"],
-      "@config/*": ["config/*"],
-      "@utils/*": ["utils/*"],
-      "@shared/*": ["shared/*"]
+      "@infra/*": ["infra/*"],
+      "@core/*": ["core/*"],
+      "@config/*": ["config/*"]
     },
     "typeRoots": ["./src/@types/**/*.d.ts"]
   }

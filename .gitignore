@@ -4,5 +4,9 @@ node_modules
 # Build
 dist
 
+# Environment variables
+.env
+.env.development.local
+
 # IDE
 .vscode
