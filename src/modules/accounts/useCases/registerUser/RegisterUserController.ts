@@ -3,6 +3,7 @@ import {
   clientError,
   conflict,
   created,
+  fail,
   HttpResponse,
 } from '@core/infra/HttpResponse'
 import { Validator } from '@core/infra/Validator'

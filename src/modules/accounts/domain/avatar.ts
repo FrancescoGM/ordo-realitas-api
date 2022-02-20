@@ -6,7 +6,7 @@ import { InvalidAvatarFileError } from './errors/InvalidAvatarFileError'
 export class Avatar {
   private readonly avatar_url: string | null
 
-  get value(): string {
+  get value(): string | null {
     return this.avatar_url
   }
 

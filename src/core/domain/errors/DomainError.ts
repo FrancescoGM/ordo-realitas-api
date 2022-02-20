@@ -1,3 +1,3 @@
-export interface DomainError {
+export type DomainError = {
   message: string
 }

@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  database:
+    image: postgres
+    container_name: ordo_realitas_database_test
+    restart: always
+    ports:
+      - 2345:5432
+    env_file:
+      - .env.test
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
+    driver: local

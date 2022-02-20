@@ -5,7 +5,7 @@ import { InvalidGoogleError } from './errors/InvalidGoogleError'
 export class Google {
   private readonly google_id: string | null
 
-  get value(): string {
+  get value(): string | null {
     return this.google_id
   }
 

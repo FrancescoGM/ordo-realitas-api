@@ -5,10 +5,8 @@ import { IUsersRepository } from '../IUsersRepository'
 export class InMemoryUsersRepository implements IUsersRepository {
   constructor(public items: User[] = []) {}
 
-  async create(data: User): Promise<User> {
+  async create(data: User): Promise<void> {
     this.items.push(data)
-
-    return data
   }
 
   async exists(email: string): Promise<boolean> {

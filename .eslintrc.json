@@ -16,6 +16,7 @@
   },
   "plugins": ["import-helpers", "prettier", "@typescript-eslint"],
   "rules": {
+    "new-cap": "off",
     "require-jsdoc": "off",
     "camelcase": "off",
     "import/no-unresolved": "off",
