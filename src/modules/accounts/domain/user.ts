@@ -17,8 +17,8 @@ interface IUserProps {
   name: Name
   email: Email
   password: Password
-  avatar_url: Avatar
-  google_id: Google
+  avatar_url?: Avatar | null
+  google_id?: Google | null
 }
 
 export class User extends Entity<IUserProps> {
