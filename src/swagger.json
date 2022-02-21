@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ordo Realitas API",
+    "version": "1.0.0",
+    "description": "API for Ordo Realitas",
+    "contact": {
+      "email": "francescogmuller@hotmail.com",
+      "name": "Francesco Gonzalez Muller",
+      "url": "https://ordo-realitas.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User created"
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateUser": {
+        "type": "object",
+        "required": ["name", "email", "password", "password_confirmation"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minimum": 2,
+            "maximum": 255,
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maximum": 255,
+            "example": "johndoe@johndoe.com"
+          },
+          "password": {
+            "type": "string",
+            "minimum": 6,
+            "maximum": 255,
+            "format": "password",
+            "example": "johndoe"
+          },
+          "password_confirmation": {
+            "type": "string",
+            "minimum": 6,
+            "maximum": 255,
+            "format": "password",
+            "example": "johndoe"
+          },
+          "avatar_url": {
+            "type": "string",
+            "format": "url",
+            "nullable": true,
+            "example": "https://johndoe.com/johndoe.png"
+          }
+        }
+      }
+    }
+  }
+}

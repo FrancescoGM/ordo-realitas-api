@@ -1,4 +1,4 @@
 {
   "**/*.{js,ts,json}": ["npm run lint:fix"],
-  "**/*.{ts,js}": ["npm run test --bail --findRelatedTests"]
+  "**/*.{ts}": ["npm run test:pre-commit"]
 }

@@ -34,14 +34,13 @@ export class RegisterUserController implements Controller {
         return clientError(validationResult.value)
       }
 
-      const { name, email, password, avatar_url, google_id } = request
+      const { name, email, password, avatar_url } = request
 
       const result = await this.registerUser.execute({
         name,
         email,
         password,
         avatar_url,
-        google_id,
       })
 
       if (result.isLeft()) {
