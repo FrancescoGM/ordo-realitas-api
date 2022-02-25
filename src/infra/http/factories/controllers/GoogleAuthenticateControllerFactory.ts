@@ -4,7 +4,7 @@ import { PrismaUsersRepository } from '@modules/accounts/repositories/prisma/Pri
 import { GoogleAuthenticate } from '@modules/accounts/useCases/googleAuthenticate/GoogleAuthenticate'
 import { GoogleAuthenticateController } from '@modules/accounts/useCases/googleAuthenticate/GoogleAuthenticateController'
 
-export function makeAuthenticateUserController(): Controller {
+export function makeGoogleAuthenticateController(): Controller {
   const usersRepository = new PrismaUsersRepository()
   const googleProvider = new GoogleProvider()
   const googleAuthenticate = new GoogleAuthenticate(
@@ -12,9 +12,9 @@ export function makeAuthenticateUserController(): Controller {
     googleProvider
   )
 
-  const authenticateUserController = new GoogleAuthenticateController(
+  const googleAuthenticateController = new GoogleAuthenticateController(
     googleAuthenticate
   )
 
-  return authenticateUserController
+  return googleAuthenticateController
 }

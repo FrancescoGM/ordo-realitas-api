@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
 import { adaptRoute } from '../adapters/RouteAdapter'
-import { makeAuthenticateUserController } from '../factories/controllers/AuthenticateUserController'
+import { makeGoogleAuthenticateController } from '../factories/controllers/GoogleAuthenticateControllerFactory'
 
 export const sessionsRouter = Router()
 
-sessionsRouter.post('/google', adaptRoute(makeAuthenticateUserController()))
+sessionsRouter.post('/google', adaptRoute(makeGoogleAuthenticateController()))
