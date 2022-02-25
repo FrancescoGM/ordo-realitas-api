@@ -22,6 +22,6 @@ describe('User model', () => {
       google_id,
     })
 
-    expect(user.isRight()).toBeTruthy()
+    expect(user.isRight()).toBe(true)
   })
 })

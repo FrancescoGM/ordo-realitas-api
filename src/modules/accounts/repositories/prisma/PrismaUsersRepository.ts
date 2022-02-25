@@ -12,11 +12,20 @@ export class PrismaUsersRepository implements IUsersRepository {
 
     return !!userExists
   }
+
   async create(user: User): Promise<void> {
     const data = await UserMapper.toPersistence(user)
 
     await prisma.user.create({
       data,
     })
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await prisma.user.findFirst({
+      where: { email },
+    })
+
+    return user ? UserMapper.toDomain(user) : null
   }
 }

@@ -16,7 +16,7 @@ import { Password } from './password'
 interface IUserProps {
   name: Name
   email: Email
-  password: Password
+  password: Password | null
   avatar_url?: Avatar | null
   google_id?: Google | null
 }

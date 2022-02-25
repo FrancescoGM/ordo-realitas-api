@@ -31,6 +31,10 @@ export class Password {
   }
 
   public async getHashedValue(): Promise<string> {
+    if (this.password === null) {
+      return null
+    }
+
     if (this.hashed) {
       return this.password
     }

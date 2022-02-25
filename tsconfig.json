@@ -9,6 +9,7 @@
     "outDir": "./dist",
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
+    "isolatedModules": false,
     "experimentalDecorators": true,
     "types": ["@types/jest"],
     "baseUrl": "./src",

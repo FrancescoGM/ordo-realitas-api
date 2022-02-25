@@ -7,22 +7,22 @@ describe('User avatar value object', () => {
     const avatar3 = Avatar.create('https://johndoe.com/johndoe.jpeg')
     const avatar4 = Avatar.create('https://johndoe.com/johndoe.jpg')
 
-    expect(avatar1.isRight()).toBeTruthy()
-    expect(avatar2.isRight()).toBeTruthy()
-    expect(avatar3.isRight()).toBeTruthy()
-    expect(avatar4.isRight()).toBeTruthy()
+    expect(avatar1.isRight()).toBe(true)
+    expect(avatar2.isRight()).toBe(true)
+    expect(avatar3.isRight()).toBe(true)
+    expect(avatar4.isRight()).toBe(true)
   })
 
   it('Should accept null avatar url', () => {
     const avatar = Avatar.create(null)
 
-    expect(avatar.isRight()).toBeTruthy()
+    expect(avatar.isRight()).toBe(true)
   })
 
   it('should reject invalid avatar url when file extension is not png, gif, jpeg or jpg', () => {
     const avatar = Avatar.create('https://johndoe.com/johndoe.pngx')
 
-    expect(avatar.isLeft()).toBeTruthy()
+    expect(avatar.isLeft()).toBe(true)
   })
 
   it('Should reject invalid avatar url with more than 255 characters', () => {
@@ -30,6 +30,6 @@ describe('User avatar value object', () => {
 
     const avatar = Avatar.create(`https://${domain}.com/johndoe.png`)
 
-    expect(avatar.isLeft()).toBeTruthy()
+    expect(avatar.isLeft()).toBe(true)
   })
 })
