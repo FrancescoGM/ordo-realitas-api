@@ -17,7 +17,7 @@ export class App {
   }
 
   constructor() {
-    config({ silent: true })
+    config({ node_env: NODE_ENV, silent: true })
 
     this.middlewares()
     this.cors()

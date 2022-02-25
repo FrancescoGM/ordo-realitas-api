@@ -12,7 +12,7 @@ describe('Validator compositor', () => {
       field_to_compare: 'value',
     })
 
-    expect(result.isRight()).toBeTruthy()
+    expect(result.isRight()).toBe(true)
   })
 
   it('Should return error if receive different values', () => {
@@ -21,6 +21,6 @@ describe('Validator compositor', () => {
       field_to_compare: 'different_value',
     })
 
-    expect(result.isLeft()).toBeTruthy()
+    expect(result.isLeft()).toBe(true)
   })
 })

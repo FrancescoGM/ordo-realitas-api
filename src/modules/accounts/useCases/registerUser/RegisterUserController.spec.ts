@@ -28,7 +28,10 @@ describe('Register user (e2e)', () => {
       where: { email: 'johndoe@johndoe.com' },
     })
 
-    expect(userInDatabase).toBeTruthy()
+    expect(userInDatabase.name).toBe('John Doe')
+    expect(userInDatabase.email).toBe('johndoe@johndoe.com')
+    expect(userInDatabase.google_id).toBeNull()
+    expect(userInDatabase.avatar_url).toBeNull()
   })
 
   it('Should return an error if validation fails', async () => {

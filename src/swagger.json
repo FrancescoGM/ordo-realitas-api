@@ -31,7 +31,59 @@
             "description": "User created"
           },
           "400": {
-            "description": "Invalid user supplied"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions/google": {
+      "post": {
+        "tags": ["sessions"],
+        "summary": "Login with Google",
+        "description": "Login with Google",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id_token": {
+                    "type": "string",
+                    "description": "Google ID token",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -39,6 +91,45 @@
   },
   "components": {
     "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Sample error message"
+          }
+        }
+      },
+      "SessionResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "JWT token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          },
+          "user": {
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User name",
+                "example": "John Doe"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "example": "johndoe@johndoe.com"
+              },
+              "avatar_url": {
+                "type": "string",
+                "description": "User avatar URL",
+                "nullable": true,
+                "example": "https://johndoe.com/avatar.png"
+              }
+            }
+          }
+        }
+      },
       "CreateUser": {
         "type": "object",
         "required": ["name", "email", "password", "password_confirmation"],

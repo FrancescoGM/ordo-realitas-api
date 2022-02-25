@@ -21,8 +21,8 @@ describe('Register user', () => {
       password: '123456',
     })
 
-    expect(response.isRight()).toBeTruthy()
-    expect(await usersRepository.exists('johndoe@johndoe.com')).toBeTruthy()
+    expect(response.isRight()).toBe(true)
+    expect(await usersRepository.exists('johndoe@johndoe.com')).toBe(true)
   })
 
   it('Should not be able to create an new user with invalid data', async () => {
@@ -32,7 +32,7 @@ describe('Register user', () => {
       password: '123',
     })
 
-    expect(response.isLeft()).toBeTruthy()
+    expect(response.isLeft()).toBe(true)
   })
 
   it('Should not be able to create new user with existing email', async () => {
@@ -52,7 +52,7 @@ describe('Register user', () => {
       password: '123456',
     })
 
-    expect(response.isLeft()).toBeTruthy()
+    expect(response.isLeft()).toBe(true)
     expect(response.value).toBeInstanceOf(AccountAlreadyExistsError)
     expect(response.value).toEqual(
       new AccountAlreadyExistsError('johndoe@johndoe.com')
