@@ -2,6 +2,7 @@ import { Either } from '@core/logic/Either'
 
 import { GoogleRequestError } from '../errors/GoogleRequestError'
 import { InvalidIdTokenError } from '../errors/InvalidIdTokenError'
+import { UnverifiedGoogleEmailError } from '../errors/UnverifiedGoogleEmailError'
 
 export interface IGoogleUser {
   email: string
@@ -12,7 +13,7 @@ export interface IGoogleUser {
 }
 
 type IGetUserResponse = Either<
-  InvalidIdTokenError | GoogleRequestError,
+  InvalidIdTokenError | GoogleRequestError | UnverifiedGoogleEmailError,
   IGoogleUser
 >
 

@@ -1,6 +1,7 @@
 import { Either, left, right } from '@core/logic/Either'
 import { GoogleRequestError } from '@infra/providers/errors/GoogleRequestError'
 import { InvalidIdTokenError } from '@infra/providers/errors/InvalidIdTokenError'
+import { UnverifiedGoogleEmailError } from '@infra/providers/errors/UnverifiedGoogleEmailError'
 import { IGoogleProvider } from '@infra/providers/models/IGoogleProvider'
 import { JWT } from '@modules/accounts/domain/jwt'
 import { createUser } from '@modules/accounts/domain/services/createUser'
@@ -16,7 +17,7 @@ export interface ITokenResponse {
 }
 
 type IResponse = Either<
-  InvalidIdTokenError | GoogleRequestError,
+  InvalidIdTokenError | GoogleRequestError | UnverifiedGoogleEmailError,
   ITokenResponse
 >
 
