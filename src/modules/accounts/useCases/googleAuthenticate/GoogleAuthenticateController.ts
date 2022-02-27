@@ -1,5 +1,5 @@
 import { Controller } from '@core/infra/Controller'
-import { clientError, HttpResponse, ok } from '@core/infra/HttpResponse'
+import { clientError, fail, HttpResponse, ok } from '@core/infra/HttpResponse'
 
 import { GoogleAuthenticate } from './GoogleAuthenticate'
 
@@ -11,12 +11,16 @@ export class GoogleAuthenticateController implements Controller {
   constructor(private googleAuthenticate: GoogleAuthenticate) {}
 
   async handle({ id_token }: IRequest): Promise<HttpResponse> {
-    const user = await this.googleAuthenticate.execute(id_token)
+    try {
+      const user = await this.googleAuthenticate.execute(id_token)
 
-    if (user.isLeft()) {
-      return clientError(user.value)
+      if (user.isLeft()) {
+        return clientError(user.value)
+      }
+
+      return ok(user.value)
+    } catch (err) {
+      return fail(err)
     }
-
-    return ok(user.value)
   }
 }
