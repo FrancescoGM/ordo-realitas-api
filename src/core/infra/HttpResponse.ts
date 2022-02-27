@@ -62,15 +62,6 @@ export function conflict(error: Error): HttpResponse {
   }
 }
 
-export function tooMany(error: Error): HttpResponse {
-  return {
-    statusCode: 429,
-    body: {
-      error: error.message,
-    },
-  }
-}
-
 export function fail(error: Error) {
   console.log(error)
 

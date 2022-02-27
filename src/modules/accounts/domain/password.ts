@@ -8,6 +8,10 @@ export class Password {
   private readonly password: string | null
   private readonly hashed?: boolean
 
+  get value(): string | null {
+    return this.password
+  }
+
   private constructor(password: string, hashed?: boolean) {
     this.password = password
     this.hashed = hashed
@@ -30,7 +34,7 @@ export class Password {
     return true
   }
 
-  public async getHashedValue(): Promise<string> {
+  public async getHashedValue(): Promise<string | null> {
     if (this.password === null) {
       return null
     }

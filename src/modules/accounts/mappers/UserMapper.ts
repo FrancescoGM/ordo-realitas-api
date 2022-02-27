@@ -5,7 +5,7 @@ import { User } from '../domain/user'
 
 export class UserMapper {
   static toDomain(raw: PersistenceUser): User {
-    const user = createUser(raw)
+    const user = createUser(raw, true)
 
     if (user.isLeft()) {
       throw new Error(user.value.message)

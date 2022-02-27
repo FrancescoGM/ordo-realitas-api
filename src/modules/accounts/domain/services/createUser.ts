@@ -33,16 +33,19 @@ type ICreateUserResponse = Either<
   User
 >
 
-export function createUser({
-  name,
-  email,
-  password,
-  avatar_url = null,
-  google_id = null,
-}: ICreateUserRequest): ICreateUserResponse {
+export function createUser(
+  {
+    name,
+    email,
+    password,
+    avatar_url = null,
+    google_id = null,
+  }: ICreateUserRequest,
+  hashed: boolean = false
+): ICreateUserResponse {
   const nameOrError = Name.create(name)
   const emailOrError = Email.create(email)
-  const passwordOrError = Password.create(password)
+  const passwordOrError = Password.create(password, hashed)
   const avatarOrError = Avatar.create(avatar_url)
   const googleIdOrError = Google.create(google_id)
 
