@@ -30,6 +30,7 @@ describe('Authenticate user (e2e)', () => {
 
     expect(response.status).toBe(200)
     expect(data).toHaveProperty('token')
+    expect(data).toHaveProperty('refresh_token')
     expect(data).toHaveProperty('user')
     expect(data.user.email).toBe(mockedUser.email)
     expect(data.user.name).toBe(mockedUser.name)
@@ -50,6 +51,15 @@ describe('Authenticate user (e2e)', () => {
     const response = await request(app.server).post('/sessions').send({
       email: mockedUser.email,
       password: '1234567',
+    })
+
+    expect(response.status).toBe(400)
+    expect(response.body).toHaveProperty('error')
+  })
+
+  it('Should not be able to authenticate user without email', async () => {
+    const response = await request(app.server).post('/sessions').send({
+      password: mockedUser.password,
     })
 
     expect(response.status).toBe(400)

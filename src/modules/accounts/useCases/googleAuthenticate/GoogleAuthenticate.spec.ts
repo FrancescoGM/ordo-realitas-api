@@ -1,13 +1,17 @@
+import { DayjsDateProvider } from '@infra/providers/implementations/DayjsDateProvider'
 import {
   GoogleProvider,
   IGoogleResponse,
 } from '@infra/providers/implementations/GoogleProvider'
+import { IDateProvider } from '@infra/providers/models/IDateProvider'
 import {
   IGoogleProvider,
   IGoogleUser,
 } from '@infra/providers/models/IGoogleProvider'
 import { createUser } from '@modules/accounts/domain/services/createUser'
+import { InMemoryRefreshTokensRepository } from '@modules/accounts/repositories/in-memory/InMemoryRefreshTokensRepository'
 import { InMemoryUsersRepository } from '@modules/accounts/repositories/in-memory/InMemoryUsersRepository'
+import { IRefreshTokensRepository } from '@modules/accounts/repositories/IRefreshTokensRepository'
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository'
 
 import { GoogleAuthenticate } from './GoogleAuthenticate'
@@ -30,13 +34,23 @@ jest.mock('axios', () => ({
 
 let googleProvider: IGoogleProvider
 let usersRepository: IUsersRepository
+let refreshTokensRepository: IRefreshTokensRepository
+let dateProvider: IDateProvider
 let googleAuthenticate: GoogleAuthenticate
 
 describe('Google Authenticate', () => {
   beforeEach(() => {
     googleProvider = new GoogleProvider()
     usersRepository = new InMemoryUsersRepository()
-    googleAuthenticate = new GoogleAuthenticate(usersRepository, googleProvider)
+    refreshTokensRepository = new InMemoryRefreshTokensRepository()
+    dateProvider = new DayjsDateProvider()
+
+    googleAuthenticate = new GoogleAuthenticate(
+      usersRepository,
+      googleProvider,
+      refreshTokensRepository,
+      dateProvider
+    )
   })
 
   it("Should authenticate with google and create user because the user wasn't created", async () => {
@@ -58,6 +72,7 @@ describe('Google Authenticate', () => {
 
     expect(googleUser).toBeDefined()
     expect(googleUser.value.token).toBeDefined()
+    expect(googleUser.value.refresh_token).toBeDefined()
     expect(googleUser.value.user.email).toBe(mockedGoogleUser.email)
     expect(googleUser.value.user.email).toBe(createdUser.email.value)
     expect(googleUser.value.user.name).toBe(createdUser.name.value)
@@ -87,6 +102,7 @@ describe('Google Authenticate', () => {
 
     expect(googleUser).toBeDefined()
     expect(googleUser.value.token).toBeDefined()
+    expect(googleUser.value.refresh_token).toBeDefined()
     expect(googleUser.value.user.email).toBe(mockedGoogleUser.email)
     expect(googleUser.value.user.name).toBe(mockedGoogleUser.name)
     expect(createUserSpy).toHaveBeenCalledTimes(0)
