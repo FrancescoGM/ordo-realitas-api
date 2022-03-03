@@ -1,12 +1,7 @@
 import { Request, Response } from 'express'
 
 import { Controller } from '@core/infra/Controller'
-
-interface IHttpError {
-  body: {
-    error: unknown
-  }
-}
+import { ErrorBody } from '@core/infra/HttpResponse'
 
 export const adaptRoute = (controller: Controller) => {
   return async (req: Request, res: Response) => {
@@ -23,7 +18,8 @@ export const adaptRoute = (controller: Controller) => {
       return res.status(httpResponse.statusCode).json(httpResponse.body)
     } else {
       return res.status(httpResponse.statusCode).json({
-        error: (httpResponse as IHttpError).body.error,
+        error: (httpResponse.body as ErrorBody).error,
+        name: (httpResponse.body as ErrorBody).name,
       })
     }
   }
