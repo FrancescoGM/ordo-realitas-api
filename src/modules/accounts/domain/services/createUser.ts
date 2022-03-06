@@ -15,6 +15,7 @@ import { Password } from '../password'
 import { User } from '../user'
 
 interface ICreateUserRequest {
+  id?: string
   name: string
   email: string
   password: string | null
@@ -35,6 +36,7 @@ type ICreateUserResponse = Either<
 
 export function createUser(
   {
+    id,
     name,
     email,
     password,
@@ -55,13 +57,16 @@ export function createUser(
   if (avatarOrError.isLeft()) return left(avatarOrError.value)
   if (googleIdOrError.isLeft()) return left(googleIdOrError.value)
 
-  const userOrError = User.create({
-    name: nameOrError.value,
-    email: emailOrError.value,
-    password: passwordOrError.value,
-    avatar_url: avatarOrError.value,
-    google_id: googleIdOrError.value,
-  })
+  const userOrError = User.create(
+    {
+      name: nameOrError.value,
+      email: emailOrError.value,
+      password: passwordOrError.value,
+      avatar_url: avatarOrError.value,
+      google_id: googleIdOrError.value,
+    },
+    id
+  )
 
   if (userOrError.isLeft()) return left(userOrError.value)
 

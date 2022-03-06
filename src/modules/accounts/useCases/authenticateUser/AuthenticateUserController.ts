@@ -1,5 +1,5 @@
 import { Controller } from '@core/infra/Controller'
-import { clientError, HttpResponse, ok } from '@core/infra/HttpResponse'
+import { clientError, HttpResponse, ok, fail } from '@core/infra/HttpResponse'
 import { Validator } from '@core/infra/Validator'
 
 import { AuthenticateUser } from './AuthenticateUser'
