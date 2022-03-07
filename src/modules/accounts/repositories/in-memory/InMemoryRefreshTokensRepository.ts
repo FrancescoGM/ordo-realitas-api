@@ -14,6 +14,14 @@ export class InMemoryRefreshTokensRepository
     return refreshToken || null
   }
 
+  async findByToken(token: string): Promise<RefreshToken | null> {
+    const refreshToken = this.refreshTokens.find(
+      (refreshToken) => refreshToken.token.value === token
+    )
+
+    return refreshToken || null
+  }
+
   async create(refreshToken: RefreshToken): Promise<void> {
     this.refreshTokens.push(refreshToken)
   }

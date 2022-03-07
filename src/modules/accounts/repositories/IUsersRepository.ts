@@ -4,4 +4,5 @@ export interface IUsersRepository {
   exists(email: string): Promise<boolean>
   create(data: User): Promise<void>
   findByEmail(email: string): Promise<User | null>
+  findById(id: string): Promise<User | null>
 }

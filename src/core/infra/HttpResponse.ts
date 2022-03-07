@@ -1,16 +1,21 @@
-export type HttpResponse = {
-  statusCode: number
-  body: unknown
+export type ErrorBody = {
+  error: string
+  name: string
 }
 
-export function ok<T>(dto?: T): HttpResponse {
+export type HttpResponse<TBody = unknown> = {
+  statusCode: number
+  body: TBody | ErrorBody
+}
+
+export function ok<T extends unknown>(dto?: T): HttpResponse<T> {
   return {
     statusCode: 200,
     body: dto,
   }
 }
 
-export function created(): HttpResponse {
+export function created(): HttpResponse<undefined> {
   return {
     statusCode: 201,
     body: undefined,
@@ -22,6 +27,7 @@ export function clientError(error: Error): HttpResponse {
     statusCode: 400,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
@@ -31,6 +37,7 @@ export function unauthorized(error: Error): HttpResponse {
     statusCode: 401,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
@@ -40,6 +47,7 @@ export function forbidden(error: Error): HttpResponse {
     statusCode: 403,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
@@ -49,6 +57,7 @@ export function notFound(error: Error): HttpResponse {
     statusCode: 404,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
@@ -58,6 +67,7 @@ export function conflict(error: Error): HttpResponse {
     statusCode: 409,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
@@ -69,6 +79,7 @@ export function fail(error: Error) {
     statusCode: 500,
     body: {
       error: error.message,
+      name: error.name,
     },
   }
 }
