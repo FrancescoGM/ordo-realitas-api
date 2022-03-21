@@ -103,7 +103,6 @@ export class GoogleAuthenticate {
       const userOrError = createUser({
         email: googleUser.value.email,
         name: googleUser.value.name,
-        avatar_url: googleUser.value.picture,
         google_id: googleUser.value.sub,
         password: null,
       })
