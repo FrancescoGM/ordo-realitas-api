@@ -44,6 +44,6 @@ describe('Google authenticate (e2e)', () => {
     expect(data.user).toBeDefined()
     expect(data.user.name).toBe(mockedGoogleUser.name)
     expect(data.user.email).toBe(mockedGoogleUser.email)
-    expect(data.user.avatar_url).toBe(mockedGoogleUser.picture)
+    expect(data.user.avatar_url).toBe(null)
   })
 })
